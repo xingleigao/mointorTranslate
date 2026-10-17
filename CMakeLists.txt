@@ -39,16 +39,3 @@ target_compile_definitions(MointorTranslate PUBLIC MYLIBRARY_EXPORTS)
 target_include_directories(MointorTranslate PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-
-# --- 目标 2: 创建测试程序 (EXE) ---
-# 6. 添加可执行文件目标
-add_executable(MyApp main.c)
-
-# 7. 链接 DLL 到可执行文件
-# 告诉 MyApp 需要链接到 MointorTranslate
-target_link_libraries(MyApp PRIVATE MointorTranslate)
-
-# 8. 设置可执行文件使用的头文件路径
-target_include_directories(MyApp PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)

@@ -52,8 +52,8 @@ static INT_PTR CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 
         // --- 2. 初始化波特率 ---
         HWND hBaud = GetDlgItem(hDlg, IDC_COMBO_BAUD);
-        const char* bauds[] = {"9600", "19200", "38400", "57600", "115200"};
-        for(int i=0; i<5; i++) SendMessageA(hBaud, CB_ADDSTRING, 0, (LPARAM)bauds[i]);
+        const char* bauds[] = {"9600", "19200", "38400", "57600", "115200", "2000000"};
+        for(int i=0; i<6; i++) SendMessageA(hBaud, CB_ADDSTRING, 0, (LPARAM)bauds[i]);
         
         // 如果已有波特率则显示，否则默认 115200
         if (pCfg->protocol_type == 2 && pCfg->cfg.uart.baud > 0) {
@@ -64,7 +64,7 @@ static INT_PTR CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
                 SendMessageA(hBaud, CB_SETCURSEL, (WPARAM)index, 0);
             }
         } else {
-            SendMessage(hBaud, CB_SETCURSEL, 4, 0); 
+            SendMessage(hBaud, CB_SETCURSEL, 5, 0); 
         }
 
         

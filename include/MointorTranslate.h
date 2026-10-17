@@ -1,6 +1,7 @@
 #include "CommModule.hpp"
 #include "PluginInterface.h"
 #include <wchar.h>
+#include <string>
 #include "OptionsDialog.h"
 
 class MointorTranslate : public ITMPlugin
@@ -14,6 +15,8 @@ public:
     // 通过 ITMPlugin 继承
     virtual IPluginItem* GetItem(int index) override;
     virtual void DataRequired() override;
+    virtual void OnInitialize(ITrafficMonitor* pApp) override;
+    virtual void OnExtenedInfo(ExtendedInfoIndex index, const wchar_t* data) override;
     virtual const wchar_t* GetInfo(PluginInfoIndex index) override;
     virtual void OnMonitorInfo(const MonitorInfo& monitor_info) override;
     virtual OptionReturn ShowOptionsDialog(void* hParent) override;
@@ -21,6 +24,8 @@ public:
 private:
     CommModule m_comm;     // 刚才写的模块
     PluginConfig m_config;
+    std::wstring m_config_file;
+    void LoadConfig(const wchar_t* config_dir);
     static MointorTranslate m_instance;
 };
 
